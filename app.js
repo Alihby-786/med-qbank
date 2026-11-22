@@ -559,3 +559,12 @@ if(QB.imp){const stamp='qbank-imported-'+(QB.imp.blocks||[]).length+'-'+Object.k
   let done=null;try{done=localStorage.getItem(stamp)}catch(e){}
   if(!done){try{const r=mergeProgress(QB.imp);try{localStorage.setItem(stamp,'1')}catch(e){}renderHome();modal('Progress imported',`Brought over <b>${r.added}</b> answers and <b>${r.nb}</b> tests from your claude.ai copy.`,[{label:'OK',cls:'pri'}])}catch(e){}}}
 })();
+
+/* neumorphic glass: pointer-follow highlight + shrink-on-scroll toolbars */
+(function(){
+  document.addEventListener('pointermove',function(e){var el=e.target.closest&&e.target.closest('.home.lg .card,.home.lg .kpi,.home.lg .akttile,.akt .grp,.akt .tiles div');
+    if(!el)return;var r=el.getBoundingClientRect();el.style.setProperty('--mx',(e.clientX-r.left)+'px');el.style.setProperty('--my',(e.clientY-r.top)+'px')},{passive:true});
+  document.addEventListener('scroll',function(e){var t=e.target;if(!t||!t.classList)return;
+    if(t.classList.contains('home'))t.classList.toggle('scrolled',t.scrollTop>40)
+    else if(t.classList.contains('akt'))t.classList.toggle('scrolled',t.scrollTop>40)},true);
+})();

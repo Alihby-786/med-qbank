@@ -531,7 +531,7 @@ QB.reg([
 "short": "Circulatory System",
 "by": "Uche Osisiogu",
 "n": 138,
-"v": "8d03d8f1",
+"v": "45e63f1b",
 "file": "data/L09.js",
 "fig": "fig/09_circulatory_system",
 "ref": [],
@@ -553,6 +553,8 @@ QB.reg([
 "Principles of circulation": 7,
 "Blood distribution": 2,
 "Types of arteries": 1,
+"Lymphatic system": 1,
+"Lymph": 1,
 "Integrated": 5,
 "Velocity and exchange": 1,
 "Resistance and diameter": 1,
@@ -560,8 +562,11 @@ QB.reg([
 },
 "Lymph Flow, Fluid and Fat Transport": {
 "Overview": 1,
+"Lymph": 1,
 "Lymph flow": 2,
-"Fat transport": 1
+"Fat transport": 1,
+"Integrated": 1,
+"Lymph and chyle": 1
 },
 "Arteries": {
 "Vessel walls": 10,
@@ -587,18 +592,16 @@ QB.reg([
 },
 "Capillaries": {
 "Capillaries": 8,
-"Lymph": 1,
 "Integrated": 7,
 "Capillary types": 1
 },
 "The Lymphatic System": {
-"Lymphatic system": 2,
-"Lymph": 2,
+"Lymphatic system": 1,
+"Lymph": 1,
 "Lymphatic vessels": 3,
 "Lymphatic drainage": 4,
 "Superficial and deep lymphatics": 1,
-"Integrated": 6,
-"Lymph and chyle": 1
+"Integrated": 5
 },
 "Clinical: The Lymphatic System in Disease": {
 "Lymphatic drainage": 1,
@@ -1445,7 +1448,7 @@ QB.reg([
 "short": "Skin",
 "by": "Charles Adewole",
 "n": 153,
-"v": "99888db9",
+"v": "8315c7c6",
 "file": "data/L16.js",
 "fig": "fig/19b_principles_of_skin",
 "ref": [
@@ -1504,11 +1507,19 @@ QB.reg([
 "Dermal cells": 3,
 "Sweat glands": 3,
 "Thermoregulation": 1,
-"Integrated": 6,
+"Integrated": 7,
 "Layers of skin": 1
 },
+"Pathology of the Epidermis": {
+"Skin structure and disease": 1,
+"Skin lesions": 1,
+"Psoriasis": 3,
+"Seborrhoeic keratosis": 3,
+"Descriptive terms": 4,
+"Integrated": 2
+},
 "Introduction": {
-"Skin structure and disease": 2,
+"Skin structure and disease": 1,
 "Skin and systemic disease": 2,
 "Skin overview": 1,
 "Blisters": 1,
@@ -1518,7 +1529,7 @@ QB.reg([
 "Structure of the Skin": {
 "Skin structure": 1,
 "Layers of skin": 2,
-"Integrated": 2
+"Integrated": 1
 },
 "Epidermis": {
 "Epidermis": 5,
@@ -1558,13 +1569,6 @@ QB.reg([
 "Classifying disease": 1,
 "Functions": 1,
 "Hypertrophic vs keloid scar": 1
-},
-"Pathology of the Epidermis": {
-"Skin lesions": 1,
-"Psoriasis": 3,
-"Seborrhoeic keratosis": 3,
-"Descriptive terms": 4,
-"Integrated": 2
 },
 "Function of the Skin": {
 "Functions": 1,
