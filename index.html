@@ -1,0 +1,27 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Med QBank</title>
+<style>html,body{height:100%;margin:0;background:#000;color:#f5f5f7;font:15px -apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif}</style>
+<script>window.QB_SHARED=true;window.QB_UPDATE="https://Alihby-786.github.io/med-qbank/";window.QB_LOCAL_VER=1795358984;</script>
+<div class="app" id="app"><div style="padding:24px;opacity:.7">Loading Med QBank…</div></div>
+<script>
+(function(){
+  var forceLocal=false; try{forceLocal=sessionStorage.getItem('qb-local')==='1'}catch(e){}
+  function load(src){return new Promise(function(res,rej){var s=document.createElement('script');s.src=src;s.charset='utf-8';s.onload=res;s.onerror=rej;document.head.appendChild(s)})}
+  function start(base,v){
+    window.QB_BASE=base;
+    var l=document.createElement('link');l.rel='stylesheet';l.href=base+'app.css?v='+v;document.head.appendChild(l);
+    return load(base+'shell.js?v='+v).then(function(){return load(base+'lectures.js?v='+v)}).then(function(){return load(base+'app.js?v='+v)});
+  }
+  function local(){return start('',window.QB_LOCAL_VER)}
+  if(!window.QB_UPDATE||forceLocal||navigator.onLine===false){local();return}
+  var done=false, t=setTimeout(function(){if(!done){done=true;local()}},4000);
+  load(window.QB_UPDATE+'version.js?t='+Date.now()).then(function(){
+    if(done)return; done=true; clearTimeout(t);
+    if((window.QB_REMOTE_VER||0)>window.QB_LOCAL_VER){
+      start(window.QB_UPDATE,window.QB_REMOTE_VER).catch(function(){try{sessionStorage.setItem('qb-local','1')}catch(e){}location.reload()});
+    } else local();
+  },function(){if(!done){done=true;clearTimeout(t);local()}});
+})();
+</script>
