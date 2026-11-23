@@ -531,7 +531,7 @@ QB.reg([
 "short": "Circulatory System",
 "by": "Uche Osisiogu",
 "n": 138,
-"v": "0f15f437",
+"v": "52443c19",
 "file": "data/L09.js",
 "fig": "fig/09_circulatory_system",
 "ref": [],

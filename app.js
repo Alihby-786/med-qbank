@@ -317,7 +317,7 @@ function aktList(b){
   return rows.map(({x,i,q,r})=>{const vsa=isVSA(q),lab={ok:'Correct',bad:'Incorrect',om:'Omitted'}[r];
     const yours=vsa?(x.ans?esc(x.ans):'—'):(x.sel==null?'—':q.o[x.order[x.sel]]);
     return `<details class="qrow"><summary><span class="qn r-${r}">${i+1}</span><span class="qt"><b>${esc(q.ov||q.t)}</b><small>${esc(LECT[q.l].short)} · ${(q.ft||[]).map(t=>`<span class="ftchip" style="--c:${FTC[t]}">${t}</span>`).join(' ')}</small></span><span class="qr r-${r}">${lab}</span><span class="chev">›</span></summary>
-     <div class="qbody"><p class="stem">${q.s}</p>${q.img&&QB.pics[q.img.src]?`<figure class="aimg"><img src="${QB.pics[q.img.src]}" alt="Question image" loading="lazy"><figcaption>${q.img.cap||''}</figcaption></figure>`:''}
+     <div class="qbody"><p class="stem">${q.s}</p>${q.img&&QB.pics[q.img.src]?`<figure class="aimg"><img src="${QB.pics[q.img.src+'_ans']||QB.pics[q.img.src]}" alt="Question image" loading="lazy"><figcaption>${q.img.cap||''}</figcaption></figure>`:''}
       <div class="ans"><div><span>Your answer</span><b class="r-${r}">${yours}</b></div><div><span>Correct answer</span><b>${vsa?esc(q.a[0]):q.o[0]}</b></div></div>
       <div class="tf">${ebul(q)}${anl(q)}${dia(q.d)}
       ${vsa?'':`<h4 style="margin:14px 0 4px">Why not the others?</h4><ul class="chs">${q.o.slice(1).map((o,j)=>`<li><div class="ch"><span class="lt">✗</span><b>${o}</b></div><div class="rs">${q.w[j]}</div></li>`).join('')}</ul>`}</div>
