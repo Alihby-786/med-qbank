@@ -79,7 +79,7 @@ QB.reg([
 "short": "Embryology",
 "by": "Olivia France",
 "n": 130,
-"v": "7f1c0116",
+"v": "c8360d24",
 "file": "data/L04.js",
 "fig": "fig/01_embryology",
 "ref": [],
@@ -378,7 +378,7 @@ QB.reg([
 "short": "Language Development",
 "by": "Dr Michael Wilde",
 "n": 130,
-"v": "222e013f",
+"v": "8e4f8325",
 "file": "data/L07.js",
 "fig": "fig/07_language_development",
 "ref": [],
@@ -394,7 +394,7 @@ QB.reg([
 "Milestones": 9,
 "What children learn": 3,
 "Doctor communication": 2,
-"Integrated": 12,
+"Integrated": 13,
 "Applying milestones": 4,
 "Development": 1,
 "Theories": 1,
@@ -423,7 +423,7 @@ QB.reg([
 "Doctor-Child Communication": {
 "Doctor communication": 14,
 "Clinical application": 3,
-"Integrated": 8,
+"Integrated": 7,
 "Gauging language level": 1,
 "Tailoring language": 1,
 "Positive environment": 1
@@ -531,7 +531,7 @@ QB.reg([
 "short": "Circulatory System",
 "by": "Uche Osisiogu",
 "n": 138,
-"v": "52443c19",
+"v": "5ed4c1a2",
 "file": "data/L09.js",
 "fig": "fig/09_circulatory_system",
 "ref": [],
@@ -2202,7 +2202,7 @@ QB.reg([
 "short": "Human Genome",
 "by": "Dr Athina Mylona",
 "n": 126,
-"v": "3b15cc48",
+"v": "68ce1871",
 "file": "data/L23.js",
 "fig": "fig/25_human_genome",
 "ref": [
@@ -2293,8 +2293,7 @@ QB.reg([
 "Chemotherapy and the cell cycle": 1,
 "Cell cycle checkpoints": 1
 }
-},
-"pics": "data/P23.js"
+}
 },
 {
 "k": 24,
@@ -2304,7 +2303,7 @@ QB.reg([
 "short": "DNA and Inheritance",
 "by": "Dr Athina Mylona",
 "n": 123,
-"v": "d83ba676",
+"v": "e557b5e5",
 "file": "data/L24.js",
 "fig": "fig/27_dna_inheritance",
 "ref": [
@@ -2407,8 +2406,7 @@ QB.reg([
 "Integrated": 17,
 "X-linked recessive inheritance": 1
 }
-},
-"pics": "data/P24.js"
+}
 },
 {
 "k": 25,
@@ -2748,7 +2746,7 @@ QB.reg([
 "short": "Cell Signalling I",
 "by": "Dr Ana Correia de Oliveira",
 "n": 122,
-"v": "2b846777",
+"v": "7399a39c",
 "file": "data/L27.js",
 "fig": "fig/30_cell_signalling_1",
 "ref": [
@@ -2801,7 +2799,7 @@ QB.reg([
 "Same signal, different response": 3,
 "Acetylcholine": 2,
 "Endocrine": 1,
-"Integrated": 29,
+"Integrated": 30,
 "Same ligand, different response": 1,
 "Membrane-crossing signals": 1,
 "Agonist vs antagonist": 1,
@@ -2818,7 +2816,7 @@ QB.reg([
 },
 "G Protein-Coupled Receptors": {
 "Receptors": 1,
-"Integrated": 3
+"Integrated": 2
 },
 "Types of Receptors and Ion Channels": {
 "Receptor speed": 1,
@@ -3431,7 +3429,7 @@ QB.reg([
 "short": "NMJ to Myocyte",
 "by": "Dr Kris Leslie",
 "n": 138,
-"v": "87c140aa",
+"v": "07dd9c18",
 "file": "data/L33.js",
 "fig": "fig/36_nmj_to_myocyte",
 "ref": [
@@ -3516,22 +3514,22 @@ QB.reg([
 "4-aminopyridine": 1
 },
 "Excitation-Contraction Coupling": {
-"ECC": 6,
+"ECC": 5,
 "Applied": 5,
 "Excitation–contraction coupling": 1
+},
+"Rigor Mortis and Myasthenia Gravis": {
+"ECC": 2,
+"Crossbridge cycle": 1,
+"Rigor mortis": 4,
+"Myasthenia gravis": 1,
+"Applied": 10
 },
 "Cross-Bridge Cycle": {
 "Filaments": 1,
 "Calcium": 3,
 "Crossbridge cycle": 5,
 "Applied": 7
-},
-"Rigor Mortis and Myasthenia Gravis": {
-"Crossbridge cycle": 1,
-"Rigor mortis": 4,
-"Myasthenia gravis": 1,
-"Applied": 10,
-"ECC": 1
 },
 "Twitch, Tetany and Tetanus": {
 "Contraction": 2,
@@ -4983,6 +4981,185 @@ QB.reg([
 "Prevalence definition": 1,
 "Sensitivity": 1,
 "Test threshold": 1
+}
+}
+},
+{
+"k": 47,
+"slug": "50_neoplasia",
+"code": "Lecture 68",
+"title": "Neoplasia",
+"short": "Neoplasia",
+"by": "Professor Michelle D. Garrett",
+"n": 130,
+"v": "d86f1d64",
+"file": "data/L47.js",
+"fig": "fig/50_neoplasia",
+"ref": [],
+"topics": [
+"Cancer Classification",
+"Benign Tumours",
+"Malignant Tumours",
+"Histogenic Classification of Tumours",
+"Cancer Causes and Terminology",
+"Behavioural Classification",
+"Histogenetic Classification",
+"Tumour Grading",
+"Tumour Staging",
+"Classifications Now and Future"
+],
+"mig": {
+"Cancer Classification": {
+"What is cancer": 2,
+"Aetiology": 3,
+"Classification": 4,
+"Benign vs malignant": 2
+},
+"Cancer Causes and Terminology": {
+"What is cancer": 2,
+"Aetiology": 4,
+"Terminology": 3
+},
+"Behavioural Classification": {
+"Benign vs malignant": 4,
+"Mitotic figures": 1,
+"Malignant growth": 1
+},
+"Tumour Grading": {
+"Benign vs malignant": 2,
+"Breast ductal carcinoma": 1,
+"Grading vs staging": 2,
+"How grading works": 3,
+"Grading systems": 5,
+"Grading colon adenocarcinoma": 2,
+"Grading": 2
+},
+"Benign Tumours": {
+"Benign growth": 7,
+"Issues with benign tumours": 5,
+"Malignant growth": 1
+},
+"Malignant Tumours": {
+"Malignant growth": 3,
+"Breast ductal carcinoma": 5,
+"Malignant histology": 2,
+"Issues with malignant tumours": 6,
+"Borderline tumours": 5,
+"Benign vs malignant": 1
+},
+"Histogenic Classification of Tumours": {
+"Histogenetic classification": 3,
+"Grading vs staging": 1,
+"How grading works": 1,
+"TNM": 1
+},
+"Histogenetic Classification": {
+"Histogenetic classification": 2,
+"Tissue of origin": 5,
+"Naming rules": 3,
+"Nomenclature": 11,
+"MDT": 1
+},
+"Tumour Staging": {
+"Grading vs staging": 1,
+"How staging works": 1,
+"TNM": 7,
+"Dukes classification": 8,
+"Sentinel node": 1,
+"Staging": 1
+},
+"Classifications Now and Future": {
+"Future classification": 2,
+"Unknown primary": 1,
+"Recap": 1,
+"Classification": 1
+}
+}
+},
+{
+"k": 48,
+"slug": "51_molecular_biology_cancer",
+"code": "Lecture 69",
+"title": "Molecular Biology of Cancer",
+"short": "Molecular Biology of Cancer",
+"by": "Dr Carol M. Trim",
+"n": 130,
+"v": "c1af8b55",
+"file": "data/L48.js",
+"fig": "fig/51_molecular_biology_cancer",
+"ref": [],
+"topics": [
+"Aetiology of Cancer",
+"Examples of Cancer Associated Genes",
+"Molecular Basis of Cancer",
+"Assays of Oncogenic Transformation",
+"Causes of Cancer",
+"Oncogenes and Tumour Suppressor Genes",
+"Cell Cycle and Cancer",
+"Epigenetics",
+"Hallmarks of Cancer",
+"Targeting the Hallmarks"
+],
+"mig": {
+"Epigenetics": {
+"Cancer as a genetic disease": 1,
+"Multistep carcinogenesis": 1,
+"Epigenetics": 10,
+"Epigenetics in cancer": 2
+},
+"Molecular Basis of Cancer": {
+"Molecular biology": 2,
+"Multistep carcinogenesis": 5,
+"Oncogenes vs TSGs": 1,
+"Cell cycle": 1,
+"Myc pathway": 1
+},
+"Targeting the Hallmarks": {
+"Molecular biology": 1,
+"Other oncogenes": 1,
+"Hallmarks": 2,
+"Emerging hallmarks": 1,
+"Drug targets": 10
+},
+"Hallmarks of Cancer": {
+"Multistep carcinogenesis": 1,
+"Hallmarks": 5,
+"Angiogenesis": 8,
+"Emerging hallmarks": 3,
+"Enabling characteristics": 2,
+"Hallmark critique": 3
+},
+"Assays of Oncogenic Transformation": {
+"Transformation assay": 6,
+"Normal vs transformed": 3,
+"Detecting oncogenes": 3
+},
+"Causes of Cancer": {
+"Risk factors": 8,
+"Hormones": 3,
+"Philadelphia chromosome": 7,
+"Tumour suppressors": 1,
+"Drug targets": 1,
+"Other acquired mutations": 2,
+"Myc pathway": 1
+},
+"Oncogenes and Tumour Suppressor Genes": {
+"Oncogenes vs TSGs": 8,
+"Proto-oncogenes": 6,
+"Other oncogenes": 4,
+"Tumour suppressors": 4,
+"Drug targets": 1,
+"Multistep carcinogenesis": 1
+},
+"Cell Cycle and Cancer": {
+"Cell cycle and cancer": 5,
+"Cell cycle": 3
+},
+"Examples of Cancer Associated Genes": {
+"Multistep carcinogenesis": 1
+},
+"Aetiology of Cancer": {
+"Multistep carcinogenesis": 1
 }
 }
 }
