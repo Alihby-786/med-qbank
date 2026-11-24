@@ -4992,35 +4992,29 @@ QB.reg([
 "short": "Neoplasia",
 "by": "Professor Michelle D. Garrett",
 "n": 130,
-"v": "d86f1d64",
+"v": "d949b52d",
 "file": "data/L47.js",
 "fig": "fig/50_neoplasia",
 "ref": [],
 "topics": [
-"Cancer Classification",
-"Benign Tumours",
-"Malignant Tumours",
-"Histogenic Classification of Tumours",
 "Cancer Causes and Terminology",
 "Behavioural Classification",
+"Benign Tumours",
+"Malignant Tumours",
 "Histogenetic Classification",
 "Tumour Grading",
 "Tumour Staging",
 "Classifications Now and Future"
 ],
 "mig": {
-"Cancer Classification": {
-"What is cancer": 2,
-"Aetiology": 3,
-"Classification": 4,
+"Cancer Causes and Terminology": {
+"What is cancer": 4,
+"Aetiology": 7,
+"Terminology": 3,
 "Benign vs malignant": 2
 },
-"Cancer Causes and Terminology": {
-"What is cancer": 2,
-"Aetiology": 4,
-"Terminology": 3
-},
 "Behavioural Classification": {
+"Classification": 4,
 "Benign vs malignant": 4,
 "Mitotic figures": 1,
 "Malignant growth": 1
@@ -5029,7 +5023,7 @@ QB.reg([
 "Benign vs malignant": 2,
 "Breast ductal carcinoma": 1,
 "Grading vs staging": 2,
-"How grading works": 3,
+"How grading works": 4,
 "Grading systems": 5,
 "Grading colon adenocarcinoma": 2,
 "Grading": 2
@@ -5047,23 +5041,17 @@ QB.reg([
 "Borderline tumours": 5,
 "Benign vs malignant": 1
 },
-"Histogenic Classification of Tumours": {
-"Histogenetic classification": 3,
-"Grading vs staging": 1,
-"How grading works": 1,
-"TNM": 1
-},
 "Histogenetic Classification": {
-"Histogenetic classification": 2,
+"Histogenetic classification": 5,
 "Tissue of origin": 5,
 "Naming rules": 3,
 "Nomenclature": 11,
 "MDT": 1
 },
 "Tumour Staging": {
-"Grading vs staging": 1,
+"Grading vs staging": 2,
 "How staging works": 1,
-"TNM": 7,
+"TNM": 8,
 "Dukes classification": 8,
 "Sentinel node": 1,
 "Staging": 1
