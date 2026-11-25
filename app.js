@@ -171,7 +171,7 @@ function testsTable(list){
     const sc=scoreOf(b),n=b.qs.length,pc=Math.round(sc/n*100);
     return `<tr><td class="num">#${b.no}</td><td>${new Date(b.created).toLocaleDateString(undefined,{day:'numeric',month:'short'})} ${new Date(b.created).toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'})}</td><td><span class="pill ${b.done?'':'sus'}">${b.done?(b.mode==='tutor'?'Tutor':'Timed'):'Suspended'}</span></td><td class="num">${n}</td>
     <td>${b.done?`<div style="display:flex;align-items:center;gap:8px"><div class="bar-meter"><i style="width:${pc}%"></i></div><span class="num">${pc}%</span></div>`:`<span class="hint">${b.qs.filter(x=>x.sel!=null).length} answered</span>`}</td>
-    <td>${b.done?`<button class="linkb" data-review="${b.no}">Review</button><button class="linkb" data-results="${b.no}">Results</button>`:`<button class="linkb" data-resume="${b.no}">Resume</button>`}</td></tr>`}).join('')}</tbody></table></div>`;
+    <td>${b.done?`<button class="linkb" data-review="${b.no}">Review</button><button class="linkb" data-results="${b.no}">Results</button>`:`<button class="linkb" data-resume="${b.no}">Resume</button>`}<button class="linkb rm" data-remove="${b.no}" title="Remove this test">Remove</button></td></tr>`}).join('')}</tbody></table></div>`;
 }
 function topicPerf(){
   const rows=[];ORDER.forEach(l=>topicsOf(l).forEach(t=>{const qs=ALL.filter(q=>q.l===l&&q.t===t);let used=0,cor=0;qs.forEach(q=>{const a=lastAttempt(q.id);if(a){used++;if(a.c)cor++}});rows.push({l,t,n:qs.length,used,cor})}));
@@ -277,7 +277,13 @@ function _render(){
 }
 function go(i){if(i<0||i>=B.qs.length)return;B.idx=i;save();render();const p=document.querySelector('.qpane');if(p)p.scrollTop=0}
 function choose(pos){const x=B.qs[B.idx];if(revealed(x))return;x.sel=x.sel===pos&&B.mode==='timed'?null:pos;x.strike=x.strike.filter(p=>p!==pos);save();render()}
-function record(x){(S.hist[x.id]=S.hist[x.id]||[]).push({c:isOk(x),om:x.sel==null,t:x.t,ts:Date.now()})}
+function record(x){(S.hist[x.id]=S.hist[x.id]||[]).push({c:isOk(x),om:x.sel==null,t:x.t,ts:Date.now(),b:B&&B.created})}
+/* remove a test and every answer it added to progress (answers are matched by test tag, or for older answers by time + time spent) */
+function removeBlock(no){const b=S.blocks.find(x=>x.no==no);if(!b)return;const end=b.done?(b.created+(b.elapsed||0)*1000+864e5*30):Infinity;
+  b.qs.forEach(x=>{const h=S.hist[x.id];if(!h)return;let i=h.findIndex(a=>a.b===b.created);
+    if(i<0){let best=1e9;h.forEach((a,j)=>{if(a.b==null&&a.ts>=b.created&&a.ts<=end){const d=Math.abs((a.t||0)-(x.t||0));if(d<best){best=d;i=j}}})}
+    if(i>=0){h.splice(i,1);if(!h.length)delete S.hist[x.id]}});
+  S.blocks=S.blocks.filter(x=>x!==b);save();renderHome()}
 function submit(){const x=B.qs[B.idx];if(x.sel==null||x.sub)return;x.sub=true;record(x);save();render()}
 function endBlock(auto){
   B.qs.forEach(x=>{if(!(B.mode==='tutor'&&x.sub))record(x);x.sub=true});
@@ -484,7 +490,7 @@ function openBackup(){
 
 /* ================= EVENTS ================= */
 app.addEventListener('click',e=>{
-  const t=e.target.closest('[data-act],[data-pos],[data-go],[data-mode],[data-resume],[data-review],[data-reviewbad],[data-results],[data-open],[data-aktgo],[data-aktres],[data-aktopen],[data-aktf],[data-aktft]');if(!t)return;
+  const t=e.target.closest('[data-act],[data-pos],[data-go],[data-mode],[data-resume],[data-review],[data-reviewbad],[data-results],[data-open],[data-aktgo],[data-aktres],[data-aktopen],[data-aktf],[data-aktft],[data-remove]');if(!t)return;
   const d=t.dataset;
   if(d.aktgo){return startAKT(+d.aktgo)}
   if(d.aktres){aktF={res:'all',ft:null};return renderAKT(S.blocks.find(x=>x.no==d.aktres))}
@@ -496,6 +502,7 @@ app.addEventListener('click',e=>{
   if(d.pos!=null)return choose(+d.pos);
   if(d.go!=null){go(+d.go);if(innerWidth<900){navOpen=false;render()}return}
   if(d.mode){S.prefs.mode=d.mode;save();return renderHome()}
+  if(d.remove){const b=S.blocks.find(x=>x.no==d.remove);if(!b)return;return modal('Remove test #'+b.no+'?',b.done?'This deletes the test from Previous tests and takes its <b>'+b.qs.length+'</b> answers out of your progress and scores. Those questions go back to unused if this was their only attempt. This cannot be undone.':'This cancels the suspended test and removes any answers it saved. This cannot be undone.',[{label:'Cancel'},{label:'Remove',cls:'danger',fn:()=>removeBlock(b.no)}])}
   if(d.resume){const b=S.blocks.find(x=>x.no==d.resume);return openTest(b)}
   if(d.review){const b=S.blocks.find(x=>x.no==d.review);b.idx=0;return openTest(b)}
   if(d.reviewbad){const b=S.blocks.find(x=>x.no==d.reviewbad);const i=b.qs.findIndex(x=>!isOk(x));b.idx=Math.max(0,i);navOpen=true;return openTest(b)}

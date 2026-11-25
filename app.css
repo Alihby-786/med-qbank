@@ -738,3 +738,4 @@ table.tests td.num{font-variant-numeric:tabular-nums}
 .revise li em{font-style:normal;font-weight:600;font-variant-numeric:tabular-nums}
 .revcard .subt{color:var(--ap-mut);margin:-4px 0 6px}
 .revcard .revh{margin-top:0}
+.linkb.rm{color:#ff453a!important;opacity:.75}.linkb.rm:hover{opacity:1}
