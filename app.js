@@ -360,10 +360,22 @@ function renderAKT(b,auto){
    <div class="segc">${[['all','All',n],['bad','Incorrect',cnt('bad')],['om','Omitted',cnt('om')],['ok','Correct',c]].map(([k,l,v])=>`<button data-aktf="${k}" class="${aktF.res===k?'on':''}">${l} <small>${v}</small></button>`).join('')}</div>
    <div class="chips"><button data-aktft="" class="${aktF.ft?'':'on'}">All tracks</button>${T.map(t=>`<button data-aktft="${t.t}" class="${aktF.ft===t.t?'on':''}" style="--c:${FTC[t.t]}">${t.t}</button>`).join('')}</div>
    <div class="grp" id="aktlist">${aktList(b)}</div>
+   ${reviseHTML(b)}
   </div></div>`;  const el=$('#aktpc'),T0=performance.now(),tgt=Math.round(pc);if(el&&!matchMedia('(prefers-reduced-motion: reduce)').matches){const st=t=>{const k=Math.min(1,(t-T0)/1400),e=1-Math.pow(1-k,3);el.textContent=Math.round(tgt*e)+'%';if(k<1)requestAnimationFrame(st)};requestAnimationFrame(st)}
   restorePage();
 }
 
+/* what to revise: worst lectures first, with their weak RemNote sections (topics) inside */
+function reviseHTML(b){
+  const L={};b.qs.forEach(x=>{const q=BY[x.id];const o=L[q.l]=L[q.l]||{n:0,ok:0,T:{}};o.n++;const t=o.T[q.t]=o.T[q.t]||{n:0,ok:0};t.n++;if(isOk(x)){o.ok++;t.ok++}});
+  const pcol=p=>p>=70?'#30d158':p>=50?'#ff9f0a':'#ff453a';
+  const ls=Object.entries(L).map(([l,v])=>({l:+l,...v,p:v.ok/v.n*100})).filter(o=>o.ok<o.n).sort((a,b)=>a.p-b.p||(b.n-b.ok)-(a.n-a.ok));
+  if(!ls.length)return `<h2 class="revh">What to revise</h2><div class="grp revise"><p class="okline">Nothing to revise: every question correct.</p></div>`;
+  return `<h2 class="revh">What to revise</h2><p class="subt">Lectures you did worst in first. Inside each, the flashcard sections where you dropped marks, so you can go straight to those cards.</p>
+  <div class="grp revise">${ls.map(o=>{const ts=Object.entries(o.T).map(([t,v])=>({t,...v,p:v.ok/v.n*100})).filter(t=>t.ok<t.n).sort((a,b)=>a.p-b.p||(b.n-b.ok)-(a.n-a.ok));
+    return `<div class="rvl"><div class="rvh"><b>${esc(LECT[o.l].code?LECT[o.l].code+' · ':'')}${esc(LECT[o.l].short)}</b><span class="rvp" style="color:${pcol(o.p)}">${o.ok}/${o.n} · ${Math.round(o.p)}%</span></div>
+    <div class="mini"><div style="width:${o.p}%;background:${pcol(o.p)}"></div></div>
+    <ul>${ts.map(t=>`<li><span>${esc(t.t)}</span><em style="color:${pcol(t.p)}">${t.ok}/${t.n}</em></li>`).join('')}</ul></div>`}).join('')}</div>`}
 /* ================= RESULTS ================= */
 const pageScroll={};
 function savePage(){const el=document.querySelector('.home,.akt');if(el&&B&&(view==='results'||view==='akt'))pageScroll[view+B.no]=el.scrollTop}
@@ -383,6 +395,7 @@ function renderResults(b,auto){
    <div class="card"><h2>Question breakdown</h2><div class="tblwrap"><table class="tests reslist"><thead><tr><th>#</th><th>Question Id</th><th>Lecture</th><th>Topic</th><th>Result</th><th>Time</th><th></th></tr></thead><tbody>
    ${b.qs.map((x,i)=>{const q=BY[x.id];const res=x.sel==null?'om':isOk(x)?'ok':'bad';return `<tr><td class="num">${i+1}</td><td class="num">${q.id}</td><td>${LECT[q.l].short}</td><td>${esc(q.t)}</td><td class="r-${res}">${{ok:'Correct',bad:'Incorrect',om:'Omitted'}[res]}</td><td class="num">${fmt(x.t).slice(3)}</td><td><button class="linkb" data-open="${i}">Open</button></td></tr>`}).join('')}
    </tbody></table></div></div>
+   <div class="card revcard">${reviseHTML(b)}</div>
   </div></div>`;
   restorePage();
 }
@@ -546,11 +559,14 @@ document.addEventListener('keydown',e=>{
   if(view!=='test'||e.target.closest('textarea,input')||document.querySelector('.scrim'))return;
   const k=e.key.toUpperCase();
   if('ABCDE'.includes(k)&&k.length===1){choose('ABCDE'.indexOf(k));e.preventDefault()}
-  else if(k==='ENTER'){if(e.target.closest('.choice'))choose(+e.target.closest('.choice').dataset.pos);else if(B.mode==='tutor')submit()}
-  else if(k==='ARROWRIGHT'||k==='N')go(B.idx+1);
-  else if(k==='ARROWLEFT'||k==='P')go(B.idx-1);
-  else if(k==='M'){const id=B.qs[B.idx].id;S.flags[id]=!S.flags[id];if(!S.flags[id])delete S.flags[id];save();render()}
+  else if(k==='ENTER'){e.preventDefault();if(e.target.closest('.choice'))choose(+e.target.closest('.choice').dataset.pos);else if(B.mode==='tutor')submit()}
+  else if(k==='ARROWRIGHT'||k==='N'){e.preventDefault();go(B.idx+1)}
+  else if(k==='ARROWLEFT'||k==='P'){e.preventDefault();go(B.idx-1)}
+  else if(k==='M'){e.preventDefault();const id=B.qs[B.idx].id;S.flags[id]=!S.flags[id];if(!S.flags[id])delete S.flags[id];save();render()}
 });
+/* no Mac error beep: a plain key press outside a text box that the page doesn't use is swallowed (the app's web view beeps for unhandled keys) */
+document.addEventListener('keydown',e=>{if(e.defaultPrevented||e.metaKey||e.ctrlKey||e.altKey)return;if(e.target.closest&&e.target.closest('textarea,input,select,[contenteditable]'))return;
+  if(e.key.length===1&&e.key!==' '||['Enter','ArrowLeft','ArrowRight','Backspace','Delete','Escape'].includes(e.key))e.preventDefault()});
 document.addEventListener('visibilitychange',()=>{if(document.hidden)save()});
 
 renderHome();
