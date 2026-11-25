@@ -384,8 +384,8 @@ function renderResults(b,auto){
   clearInterval(tick);view='results';B=b;
   const n=b.qs.length,c=scoreOf(b),om=b.qs.filter(x=>x.sel==null).length,pc=Math.round(c/n*100);
   const r=46,C=2*Math.PI*r;
-  app.innerHTML=`<div class="bar top"><div class="brand">Med QBank<small>Test #${b.no} results</small></div><div class="spacer"></div><button class="ibtn" data-act="theme" aria-label="Dark mode" title="Dark mode">${I.theme()}</button><button class="btn" style="background:#fff" data-act="home">Back to dashboard</button></div>
-  <div class="home"><div class="homein">
+  app.innerHTML=`<div class="bar top rbar"><div class="brand">Med QBank<small>Test #${b.no} results</small></div><div class="spacer"></div><button class="ibtn" data-act="theme" aria-label="Dark mode" title="Dark mode">${I.theme()}</button><button class="btn" style="background:#fff" data-act="home">Back to dashboard</button></div>
+  <div class="home ap"><div class="homein">
    ${auto?'<div class="card" style="border-color:#f1c40f"><b>Time is up.</b> The block ended automatically and unanswered questions were marked as omitted.</div>':''}
    <div class="card"><div class="score">
      <svg class="ring" viewBox="0 0 110 110" role="img" aria-label="${pc}% correct"><circle cx="55" cy="55" r="${r}" class="track" fill="none" stroke="#e6e9f0" stroke-width="12"/><circle cx="55" cy="55" r="${r}" fill="none" stroke="${pc<60?'#d23a2f':pc<80?'#e0a100':'#2e9b3e'}" stroke-width="12" stroke-dasharray="${C*pc/100} ${C}" transform="rotate(-90 55 55)" stroke-linecap="round"/><text x="55" y="61" text-anchor="middle" font-size="22" font-weight="700" fill="#1d1f24">${pc}%</text></svg>

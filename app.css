@@ -703,93 +703,25 @@ table.tests td.num{font-variant-numeric:tabular-nums}
 @media (max-width:640px){#app:has(.home.scrolled) .bar.top.lgbar{left:8px;right:8px}.akt.scrolled .anav{margin-inline:8px}.home.lg .card{padding:20px}}
 @media (prefers-reduced-motion:reduce){.home.lg *,.bar.top.lgbar{transition:none!important}}
 
-/* ================= Apple look for the question screen, feedback, results and pop-ups (Nov 2026) ================= */
-:root{--font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",sans-serif;
-  --bar:#007aff;--bar-dark:#0062cc;--page:#f2f2f7;--pane:#f2f2f7;--ink:#1c1c1e;--muted:#6e6e73;--line:rgba(60,60,67,.16);
-  --choice-line:#007aff;--sel:rgba(0,122,255,.12);--ok:#34c759;--bad:#ff3b30;--flag:#ff3b30;
-  --ap-card:#ffffff;--ap-fill:rgba(120,120,128,.12);--ap-bar:rgba(249,249,251,.78);--ap-ink2:#3a3a3c;--ap-shadow:0 1px 2px rgba(0,0,0,.04),0 8px 24px -12px rgba(0,0,0,.12)}
-:root[data-theme=dark]{--bar:#0a84ff;--bar-dark:#0a6ad6;--page:#000;--pane:#000;--ink:#f5f5f7;--muted:#98989d;--line:rgba(84,84,88,.5);
-  --choice-line:#0a84ff;--sel:rgba(10,132,255,.22);--ok:#30d158;--bad:#ff453a;--flag:#ff453a;--card:#1c1c1e;--soft:#2c2c2e;
-  --ap-card:#1c1c1e;--ap-fill:rgba(120,120,128,.24);--ap-bar:rgba(22,22,24,.78);--ap-ink2:#d1d1d6;--ap-shadow:0 0 0 1px rgba(255,255,255,.04),0 10px 30px -14px rgba(0,0,0,.8)}
-body{-webkit-font-smoothing:antialiased;letter-spacing:-.003em}
-:focus-visible{outline:3px solid rgba(0,122,255,.5);outline-offset:2px}
-/* bars: frosted, light, thin hairline */
-.bar:not(.lgbar){background:var(--ap-bar);color:var(--ink);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px)}
-.bar.top:not(.lgbar){border-bottom:.5px solid var(--line)} .bar.bottom{border-top:.5px solid var(--line)}
-.bar:not(.lgbar) .ibtn{color:var(--bar);border-radius:10px}
-.bar:not(.lgbar) .ibtn:hover{background:var(--ap-fill)}
-.bar:not(.lgbar) .ibtn small{color:var(--muted);font-weight:500}
-.bar .brand{color:var(--ink)} .item-meta,.timer{color:var(--ink);font-weight:600}
-.markbox .chk{border:1.5px solid var(--bar);border-radius:5px;background:transparent}
-.markbox.on .chk{background:var(--bar)} .markbox.on .chk::after{background:#fff;width:6px;height:6px;border-radius:1px}
-.bar:not(.lgbar) .btn[style]{background:var(--ap-fill)!important}
-/* question list sidebar: inset grouped list */
-.navcol{background:var(--page);border-right:.5px solid var(--line);padding:8px 6px}
-.navcol button,:root[data-theme=dark] .navcol button{border:0;border-radius:8px;margin:1px 0;background:none!important;padding:7px 9px}
-.navcol button:hover{background:var(--ap-fill)!important}
-.navcol button.cur,:root[data-theme=dark] .navcol button.cur{background:var(--bar)!important;color:#fff;font-weight:600}
-.navcol button.cur .dot{background:#fff!important}
-.navcol .ans .dot{background:var(--bar)}
-/* panes */
-.qpane,.xpane{background:var(--page)}
-.split .qpane{border-right:.5px solid var(--line)}
-.stem{background:var(--ap-card);border-radius:14px;padding:18px 20px;box-shadow:var(--ap-shadow);font-size:16px;line-height:1.65}
-.stem mark{border-radius:3px;padding:0 1px}
-/* answer options: separate rounded cells */
-.choices{border:0;padding:0;gap:8px;max-width:640px}
-.choice{background:var(--ap-card);border-radius:12px;padding:11px 14px;box-shadow:var(--ap-shadow);transition:transform .12s,background .15s,box-shadow .15s}
-.choice:hover,:root[data-theme=dark] .choice:hover{background:var(--ap-card);box-shadow:0 0 0 1.5px var(--bar),var(--ap-shadow)}
-.choice:active{transform:scale(.995)}
-.choice.locked:hover,:root[data-theme=dark] .choice.locked:hover{background:var(--ap-card);box-shadow:var(--ap-shadow)}
-.choice.sel{box-shadow:0 0 0 2px var(--bar),var(--ap-shadow)}
-.radio,:root[data-theme=dark] .radio{border:1.5px solid rgba(120,120,128,.55);background:transparent}
-.choice.sel .radio,:root[data-theme=dark] .choice.sel .radio{border-color:var(--bar);background:var(--bar);box-shadow:inset 0 0 0 4px var(--ap-card)}
-.choice .pct{font-variant-numeric:tabular-nums}
-.submit{background:var(--bar);border-radius:980px;padding:10px 26px;font-weight:600;box-shadow:0 4px 14px -6px rgba(0,122,255,.6)}
-.submit:hover{filter:brightness(1.06)}
-/* result strip under the options */
-.statstrip,:root[data-theme=dark] .statstrip{background:var(--ap-card);border:0;border-radius:14px;box-shadow:var(--ap-shadow);border-left:0;position:relative;overflow:hidden;padding-left:22px}
-.statstrip::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--ok)}
-.statstrip.bad::before{background:var(--bad)} .statstrip.om::before{background:#8e8e93}
-.statstrip .res{font-weight:700}
-.stat,.stat svg{color:var(--ap-ink2)}
-/* explanation: segmented tab + cards */
-.tabs{border:0;margin-bottom:14px}
-.tab{border:0;background:var(--ap-fill);border-radius:9px;padding:6px 16px;font-weight:600;font-size:13.5px;color:var(--ink)}
-.xinner{line-height:1.65}
-.xinner>p,.xinner .why{background:var(--ap-card);border-radius:14px;padding:14px 18px;box-shadow:var(--ap-shadow)}
-.xinner .why{gap:12px} .xinner .why b,:root[data-theme=dark] .xinner .why b{color:var(--ink)}
-.xinner figure{background:var(--ap-card);border:0;border-radius:14px;box-shadow:var(--ap-shadow);padding:14px}
-.xinner figure img{border-radius:8px}
-.obj,:root[data-theme=dark] .obj{background:rgba(0,122,255,.09);border:0;border-radius:14px;padding:14px 18px}
-.obj h4,:root[data-theme=dark] .obj h4{color:var(--bar);font-size:13px;text-transform:uppercase;letter-spacing:.04em}
-.rn,:root[data-theme=dark] .rn{background:rgba(175,82,222,.1);border:0;border-radius:14px;margin:0 0 18px}
-.rn h4{color:#af52de;font-size:13px;text-transform:uppercase;letter-spacing:.04em}
-.src{border-top:.5px solid var(--line)}
-/* pop-ups and dialogs: sheets */
-.pop,:root[data-theme=dark] .pop{background:var(--ap-card);border:.5px solid var(--line);border-radius:14px;box-shadow:0 24px 60px -18px rgba(0,0,0,.45)}
-.pop header{background:transparent;color:var(--ink);border-bottom:.5px solid var(--line);border-radius:14px 14px 0 0;font-weight:600}
-.pop header button{color:var(--muted)}
-.pop textarea,.calc .disp{border-radius:10px;border:0;background:var(--ap-fill);color:var(--ink)}
-.calc .keys button{border:0;border-radius:50%;width:52px;height:52px;background:var(--ap-fill);color:var(--ink)}
-.calc .keys button.op,.calc .keys button.eq{background:#ff9f0a;color:#fff}
-.reftab{border-radius:10px;overflow:hidden} .reftab th,.reftab td{border:0;border-bottom:.5px solid var(--line)} .reftab th{background:var(--ap-fill)}
-.scrim{background:rgba(0,0,0,.32);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
-.modal,:root[data-theme=dark] .modal{background:var(--ap-card);color:var(--ink);border-radius:16px;overflow:hidden;box-shadow:0 30px 80px -20px rgba(0,0,0,.5)}
-.modal header{background:transparent;color:var(--ink);font-weight:700;text-align:center;padding:18px 16px 0}
-.modal .mb{text-align:center;color:var(--ap-ink2)}
-.modal .mf{justify-content:center}
-.btn{border:0;background:var(--ap-fill);color:var(--bar);border-radius:980px;font-weight:600;padding:8px 18px}
-.btn.pri{background:var(--bar);color:#fff}
-.btn.danger{background:var(--bad);color:#fff}
-kbd{border:0;border-radius:5px;background:var(--ap-fill);color:var(--ink)}
-/* regular test results page */
-.home:not(.lg){background:var(--page)}
-.home:not(.lg) .card{background:var(--ap-card);border:0;border-radius:16px;box-shadow:var(--ap-shadow)}
-.home:not(.lg) .kpi{background:var(--ap-fill);border:0;border-radius:12px}
-.home:not(.lg) table.tests th{background:transparent;color:var(--muted);font-weight:600;border:0;border-bottom:.5px solid var(--line);text-transform:uppercase;font-size:11.5px;letter-spacing:.04em}
-.home:not(.lg) table.tests td{border:0;border-bottom:.5px solid var(--line)}
-.home:not(.lg) .linkb{color:var(--bar);font-weight:600}
+/* ================= Apple look for the test results / review screen only (question screen keeps the exam look) ================= */
+.ap,.rbar{--ap-bg:#f2f2f7;--ap-card:#fff;--ap-ink:#1c1c1e;--ap-mut:#6e6e73;--ap-line:rgba(60,60,67,.16);--ap-fill:rgba(120,120,128,.12);--ap-blue:#007aff;--ap-ok:#34c759;--ap-bad:#ff3b30;
+  --ap-shadow:0 1px 2px rgba(0,0,0,.04),0 8px 24px -12px rgba(0,0,0,.12);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",sans-serif;-webkit-font-smoothing:antialiased}
+:root[data-theme=dark] :is(.ap,.rbar){--ap-bg:#000;--ap-card:#1c1c1e;--ap-ink:#f5f5f7;--ap-mut:#98989d;--ap-line:rgba(84,84,88,.5);--ap-fill:rgba(120,120,128,.24);--ap-blue:#0a84ff;--ap-ok:#30d158;--ap-bad:#ff453a;
+  --ap-shadow:0 0 0 1px rgba(255,255,255,.04),0 10px 30px -14px rgba(0,0,0,.8)}
+.rbar{background:color-mix(in srgb,var(--ap-bg) 80%,transparent);color:var(--ap-ink);border-bottom:.5px solid var(--ap-line);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px)}
+.rbar .brand{color:var(--ap-ink)} .rbar .ibtn{color:var(--ap-blue);border-radius:10px} .rbar .ibtn:hover{background:var(--ap-fill)}
+.rbar .btn{border:0;background:var(--ap-fill)!important;color:var(--ap-blue);border-radius:980px;font-weight:600}
+.home.ap{background:var(--ap-bg);color:var(--ap-ink)}
+.ap .card{background:var(--ap-card);border:0;border-radius:16px;box-shadow:var(--ap-shadow);color:var(--ap-ink)}
+.ap .kpi{background:var(--ap-fill);border:0;border-radius:12px}
+.ap .kpi b[style*="--ok"]{color:var(--ap-ok)!important} .ap .kpi b[style*="--bad"]{color:var(--ap-bad)!important}
+.ap .btn{border:0;background:var(--ap-fill);color:var(--ap-blue);border-radius:980px;font-weight:600;padding:9px 18px}
+.ap .btn.pri{background:var(--ap-blue);color:#fff}
+.ap table.tests th{background:transparent;color:var(--ap-mut);font-weight:600;border:0;border-bottom:.5px solid var(--ap-line);text-transform:uppercase;font-size:11.5px;letter-spacing:.04em}
+.ap table.tests td{border:0;border-bottom:.5px solid var(--ap-line);background:transparent}
+.ap .reslist td.r-ok{color:var(--ap-ok)} .ap .reslist td.r-bad{color:var(--ap-bad)}
+.ap .linkb{color:var(--ap-blue);font-weight:600}
+.ap .ring .track{stroke:var(--ap-fill)} .ap .ring text{fill:var(--ap-ink)}
 /* what to revise (results page + AKT results) */
 .revh{margin-top:30px}
 .revise{display:flex;flex-direction:column;gap:0}
@@ -804,5 +736,5 @@ kbd{border:0;border-radius:5px;background:var(--ap-fill);color:var(--ink)}
 .revise li{display:flex;gap:10px;padding:4px 0;font-size:14px;opacity:.92}
 .revise li span{flex:1}
 .revise li em{font-style:normal;font-weight:600;font-variant-numeric:tabular-nums}
-.revcard .subt{color:var(--muted);margin:-4px 0 6px}
+.revcard .subt{color:var(--ap-mut);margin:-4px 0 6px}
 .revcard .revh{margin-top:0}
