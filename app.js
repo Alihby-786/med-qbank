@@ -238,10 +238,14 @@ function _render(){
      ${q.x?`<div class="rn"><h4>Read more:</h4><ul><li><a href="${q.x[1]}" target="_blank" rel="noopener">${esc(q.x[0])}: ${esc(q.x[2])}</a></li></ul></div>`:''}
      ${rnBox(q)}
      <div class="src">${LECT[q.l].code} · ${LECT[q.l].title} (${LECT[q.l].by}) · ${esc(q.t)}</div></div></div>`:'';
-  const nav=navOpen?`<div class="navcol" role="navigation" aria-label="Questions">${B.qs.map((y,i)=>{
-     let cls='',sym='';const r=revealed(y);
-     if(r&&y.sel!=null){cls=isOk(y)?'r-ok':'r-bad';sym=isOk(y)?'✓':'✗'}else if(y.sel!=null)cls='ans';
-     return `<button data-go="${i}" class="${i===B.idx?'cur':''} ${cls}"><span class="dot"></span>${i+1}${sym?' '+sym:''}${S.flags[y.id]?'<span class="fl">⚑</span>':''}</button>`}).join('')}</div>`:'';
+  let navRev=false;
+  const nav=navOpen?`<div class="navcol" role="navigation" aria-label="Questions"><div class="navcard"><h3>Question navigator</h3><div class="navgrid">${B.qs.map((y,i)=>{
+     let cls='',st='not answered';const r=revealed(y);
+     if(r&&y.sel!=null){navRev=true;cls=isOk(y)?'r-ok':'r-bad';st=isOk(y)?'correct':'incorrect'}else if(y.sel!=null){cls='ans';st='answered'}
+     const fl=S.flags[y.id];
+     return `<button data-go="${i}" class="${i===B.idx?'cur':''} ${cls} ${fl?'fl':''}" aria-label="Question ${i+1}, ${st}${fl?', flagged':''}"${i===B.idx?' aria-current="true"':''}>${i+1}</button>`}).join('')}</div>
+     <p class="navkey">Teal = answered · Orange underline = flagged${navRev?' · Green = correct · Red = incorrect':''}</p>
+     <button class="navsubmit" data-act="${B.done?'results':'end'}">${B.done?'View results':'Review and submit'}</button></div></div>`:'';
   const tl=B.limit?'Block Time Remaining':'Block Time Elapsed';
   const tv=B.done?fmt(B.elapsed):fmt(B.limit?B.limit-B.elapsed:B.elapsed);
   app.innerHTML=`

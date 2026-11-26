@@ -2,8 +2,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Med QBank</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Med QBank">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="theme-color" content="#3755a8">
 <style>html,body{height:100%;margin:0;background:#000;color:#f5f5f7;font:15px -apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif}</style>
-<script>window.QB_SHARED=true;window.QB_UPDATE="https://Alihby-786.github.io/med-qbank/";window.QB_LOCAL_VER=1795624012;</script>
+<script>window.QB_SHARED=true;window.QB_UPDATE="https://Alihby-786.github.io/med-qbank/";window.QB_LOCAL_VER=1795724520;</script>
 <div class="app" id="app"><div style="padding:24px;opacity:.7">Loading Med QBank…</div></div>
 <script>
 (function(){
@@ -23,5 +30,29 @@
       start(window.QB_UPDATE,window.QB_REMOTE_VER).catch(function(){try{sessionStorage.setItem('qb-local','1')}catch(e){}location.reload()});
     } else local();
   },function(){if(!done){done=true;clearTimeout(t);local()}});
+})();
+</script>
+<script>
+/* Offline copy (website only: iPad / Mac Safari, any browser). sw.js keeps every file of the bank on the device. */
+(function(){
+  if(!('serviceWorker' in navigator)||!/^https?:$/.test(location.protocol))return;
+  var tip=null;
+  function show(t,hide){
+    if(!tip){tip=document.createElement('div');tip.style.cssText='position:fixed;left:50%;bottom:76px;transform:translateX(-50%);z-index:9999;background:rgba(20,28,40,.92);color:#fff;font:13px -apple-system,BlinkMacSystemFont,system-ui,sans-serif;padding:7px 14px;border-radius:999px;pointer-events:none;white-space:nowrap';document.body.appendChild(tip)}
+    tip.textContent=t;tip.style.display='';
+    if(hide)setTimeout(function(){tip.style.display='none'},hide);
+  }
+  navigator.serviceWorker.addEventListener('message',function(e){
+    var d=e.data||{};
+    if(d.type==='fill-progress')show('Saving for offline use… '+d.done+' / '+d.total);
+    if(d.type==='fill-done'&&d.fetched)show('Saved for offline use',3000);
+  });
+  var had=!!navigator.serviceWorker.controller,reloaded=false;
+  navigator.serviceWorker.addEventListener('controllerchange',function(){
+    if(had&&!reloaded){reloaded=true;location.reload()}          // a newer bank was installed: show it
+    else fill();
+  });
+  function fill(){var c=navigator.serviceWorker.controller;if(c)c.postMessage({type:'fill'})}
+  navigator.serviceWorker.register('sw.js').then(function(){fill()}).catch(function(){});
 })();
 </script>
